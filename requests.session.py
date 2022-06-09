@@ -2,6 +2,9 @@ from cgitb import html
 import requests 
 from bs4 import BeautifulSoup
 import config
+import selenium 
+
+PATH = 'C:\Program Files (x86)\chromedriver.exe'
 
 loginurl = ('https://www.clubready.com/Security/Login')
 dash_url = ('https://app.clubready.com/Dashboard/MainDashboard')
@@ -22,4 +25,5 @@ with requests.session() as s:
     s.post(loginurl, data=payload)
     r = s.get(dash_url)
     soup = BeautifulSoup(r.content, 'html.parser')
-    print(soup.prettify())
+    tags = soup.find_all("a")
+    print(tags)
